@@ -143,7 +143,10 @@ footer{text-align:center;font-size:11px;color:#aaa;padding-top:6px}
 
 <script>
 // ★GASのWebアプリURL（/exec）。デプロイ後に差し替える
-const API = '__API_URL__';
+const API = 'https://script.google.com/macros/s/AKfycbzjAG0TnyUoaxTYoPqbGLsVbZpwQMNwGO3L4RlejOcJaC83WS9eGqyfH_34dj08gGTqTw/exec';
+// 管理者の動作確認用：?d=YYYY-MM-DD&k=<ADMIN_KEY> でその日の表示を確認できる（通常は空）
+const URLP = new URLSearchParams(location.search);
+const VIEW_DATE = URLP.get('d') || '', VIEW_KEY = URLP.get('k') || '';
 const LS_NAME = 'mq_name', LS_Q = 'mq_sendq';
 
 let me = '';
@@ -211,7 +214,7 @@ function changeUser() {
 // ===== ホーム =====
 function loadHome() {
   show('viewHome'); hide('viewRead'); hide('viewQuiz'); show('homeLoading'); el('homeCards').innerHTML = '';
-  api({ action: 'home', name: me }).then(res => {
+  api({ action: 'home', name: me, date: VIEW_DATE, key: VIEW_KEY }).then(res => {
     hide('homeLoading');
     if (res.error) { el('homeCards').innerHTML = '<div class="card"><p>' + escHtml(res.error) + '</p></div>'; return; }
     home = res;
