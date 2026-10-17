@@ -178,7 +178,7 @@ function pump() {
   if (sending || !sendQueue.length) return;
   sending = true;
   const it = sendQueue[0];
-  api(Object.assign({ name: me }, it)).then(() => { sendQueue.shift(); saveQueue(); sending = false; pump(); })
+  api(Object.assign({ name: me, date: VIEW_DATE }, it)).then(() => { sendQueue.shift(); saveQueue(); sending = false; pump(); })
     .catch(() => { it.tries = (it.tries || 0) + 1; if (it.tries >= 3 && sendQueue.length > 1) { it.tries = 0; sendQueue.push(sendQueue.shift()); } saveQueue(); sending = false; setTimeout(pump, 3000); });
 }
 
@@ -340,7 +340,7 @@ function advance() {
 function finish() {
   const s = cur;
   const items = s.quiz.questions.filter(q => q.done && q.type !== '記述').map(q => q.id + ':' + q.done.choice).join(',');
-  api({ action: 'answerBatch', name: me, subject: s.key, items: items }).catch(() => {});
+  api({ action: 'answerBatch', name: me, subject: s.key, items: items, date: VIEW_DATE }).catch(() => {});
   s.quiz.completed = true;
   renderResult();
 }
