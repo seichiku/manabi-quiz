@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>スタッフ学習｜成竹グループ</title>
+<link rel="preconnect" href="https://script.google.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@700&display=swap">
+<style>
+:root{
+  --bg:#f6f4ef; --paper:#fff; --fg:#1f2a2e; --muted:#5f6b70; --line:#dcd8cf;
+  --accent:#1f6f78; --accent-soft:#e2f0f1; --ok:#2e7d4f; --ok-soft:#e3f3e8; --ng:#b4452f; --ng-soft:#f8e6e1;
+  --warn-soft:#fbf1dc; --warn:#8a5a0c; --hoken:#1f6f78; --sanrui:#8a3b2f;
+  --font-body:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
+  --font-display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:15.5px;line-height:1.75;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 48px}
+.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-weight:700;letter-spacing:.04em;font-size:14px}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:11.5px;letter-spacing:.06em}
+.who{font:inherit;font-size:13px;color:var(--muted);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 18px 20px}
+.hidden{display:none!important}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 6px}
+.eyebrow.sanrui{color:var(--sanrui)}
+h1{font-family:var(--font-display);font-size:23px;line-height:1.4;margin:0 0 6px;text-wrap:balance;font-weight:700}
+h2{font-size:15px;margin:22px 0 8px;padding-left:10px;border-left:3px solid var(--accent);line-height:1.5}
+.sanrui h2{border-left-color:var(--sanrui)}
+h3{font-size:14.5px;margin:16px 0 6px}
+p{margin:0 0 10px}
+ul,ol{margin:0 0 10px;padding-left:1.3em}
+li{margin:3px 0}
+.meta{font-size:12.5px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.callout{display:flex;gap:10px;background:var(--accent-soft);border-radius:12px;padding:12px 14px;margin:10px 0}
+.callout .ico{flex:0 0 auto;font-size:18px;line-height:1.4}
+.callout p:last-child{margin-bottom:0}
+.callout.c-yellow,.callout.c-orange{background:var(--warn-soft)}
+.callout.c-red{background:var(--ng-soft)}
+.callout.c-green{background:var(--ok-soft)}
+.callout.c-gray{background:var(--bg)}
+.c-red{color:var(--ng)}.c-orange-bg,.c-yellow-bg{background:var(--warn-soft)}
+blockquote{margin:8px 0;padding:6px 12px;border-left:3px solid var(--line);color:var(--muted)}
+.tbl{overflow-x:auto;margin:8px 0}
+table{border-collapse:collapse;font-size:13.5px;min-width:100%}
+th,td{border:1px solid var(--line);padding:7px 9px;vertical-align:top;text-align:left;line-height:1.55}
+th{background:var(--bg);font-weight:700}
+details{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:8px 0}
+summary{cursor:pointer;font-weight:700}
+hr{border:0;border-top:1px dashed var(--line);margin:14px 0}
+pre{background:var(--bg);padding:10px;border-radius:8px;overflow-x:auto;font-size:13px}
+code{background:var(--bg);padding:1px 5px;border-radius:4px;font-size:.92em}
+.btn{display:block;width:100%;font:inherit;font-size:16px;font-weight:700;border:0;border-radius:12px;padding:14px;background:var(--accent);color:#fff;cursor:pointer;margin-top:16px}
+.btn[disabled]{background:var(--ok);cursor:default}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent);margin-top:10px}
+.btn.sanrui{background:var(--sanrui)}
+.btn.ghost.sanrui{background:transparent;color:var(--sanrui);border-color:var(--sanrui)}
+.note{font-size:12.5px;color:var(--muted);text-align:center;margin-top:8px}
+/* ホームのカード */
+.subj{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer}
+.subj .l{display:flex;flex-direction:column}
+.subj .n{font-weight:700;font-size:16px}
+.subj .s{font-size:13px;color:var(--muted)}
+.pill{font-size:12px;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:700;white-space:nowrap}
+.pill.done{background:var(--ok-soft);color:var(--ok)}
+.pill.none{background:var(--bg);color:var(--muted)}
+.pill.sanrui{background:#f3e5e2;color:var(--sanrui)}
+/* 名前選択 */
+#nameList{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+#nameList button{padding:14px 6px;border:1.5px solid var(--line);border-radius:12px;background:var(--paper);font:inherit;font-size:15px;font-weight:600;cursor:pointer;color:var(--fg)}
+.clinicLabel{grid-column:1/-1;font-size:13px;font-weight:700;color:var(--accent);margin-top:8px}
+/* quiz */
+.prog{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:10px;font-variant-numeric:tabular-nums}
+.qtext{font-size:17px;font-weight:700;line-height:1.6;margin:0 0 14px}
+.lead{display:block;font-weight:400;font-size:15px;background:var(--accent-soft);border-radius:10px;padding:10px 12px;margin:8px 0 10px;line-height:1.7;white-space:pre-wrap}
+.sanrui .lead{background:#f3e5e2}
+.choices{display:flex;flex-direction:column;gap:8px}
+.choice{display:flex;gap:10px;align-items:flex-start;text-align:left;font:inherit;font-size:15px;line-height:1.6;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;cursor:pointer;color:var(--fg)}
+.choice .n{flex:0 0 24px;height:24px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:12.5px;font-weight:700;color:var(--muted)}
+.choice[disabled]{cursor:default}
+.choice.ok{border-color:var(--ok);background:var(--ok-soft)}
+.choice.ok .n{background:var(--ok);border-color:var(--ok);color:#fff}
+.choice.ng{border-color:var(--ng);background:var(--ng-soft)}
+.choice.ng .n{background:var(--ng);border-color:var(--ng);color:#fff}
+.choice.flag{color:var(--muted);font-size:13px;border-style:dashed}
+.flagForm{border:1.5px dashed var(--line);border-radius:12px;padding:12px;margin-top:8px}
+.flagForm textarea{min-height:70px}
+.row{display:flex;gap:8px;margin-top:8px}
+.row button{flex:1;font:inherit;font-size:14px;font-weight:700;padding:10px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--muted);cursor:pointer}
+.row button.send{background:var(--accent);color:#fff;border-color:var(--accent)}
+.exp{margin-top:12px;border-radius:12px;padding:12px 14px;font-size:14.5px;background:var(--bg);border:1px solid var(--line)}
+.exp .verdict{font-weight:700;margin-bottom:4px}
+.exp .verdict.ok{color:var(--ok)}.exp .verdict.ng{color:var(--ng)}
+textarea{width:100%;font:inherit;font-size:15px;line-height:1.7;border:1.5px solid var(--line);border-radius:12px;padding:12px;background:var(--paper);color:var(--fg);resize:vertical;min-height:110px}
+.result .big{font-family:var(--font-display);font-size:34px;line-height:1.2;margin:4px 0 2px;font-variant-numeric:tabular-nums}
+.result .sub{color:var(--muted);font-size:13.5px;margin-bottom:12px}
+.rev{border-top:1px solid var(--line);padding-top:10px;margin-top:10px;font-size:14px}
+.rev .t{font-weight:700}
+.tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:999px;margin-right:6px;vertical-align:middle}
+.tag.ok{background:var(--ok-soft);color:var(--ok)}.tag.ng{background:var(--ng-soft);color:var(--ng)}.tag.w{background:var(--accent-soft);color:var(--accent)}
+.spinner{text-align:center;padding:30px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap;z-index:9}
+.toast.show{opacity:1}
+.back{font:inherit;font-size:13px;color:var(--muted);background:none;border:0;padding:0;cursor:pointer}
+.fbLink{font-size:12.5px;color:var(--muted);text-align:center;margin-top:14px}
+.fbLink button{font:inherit;font-size:12.5px;color:var(--accent);background:none;border:0;text-decoration:underline;cursor:pointer}
+footer{text-align:center;font-size:11px;color:#aaa;padding-top:6px}
+@media (prefers-reduced-motion: reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">成竹 スタッフ学習<small>月水金 読む ／ 火木土 解く</small></div>
+    <button class="who hidden" id="who" onclick="changeUser()"></button>
+  </header>
+
+  <!-- 名前選択 -->
+  <section id="viewName" class="card hidden">
+    <p style="font-weight:700;font-size:17px;">あなたの名前を選んでください</p>
+    <p class="note" style="text-align:left">最初の1回だけです。この端末に記憶されます。</p>
+    <div id="nameList"><div class="spinner">読み込み中…</div></div>
+  </section>
+
+  <!-- ホーム -->
+  <section id="viewHome" class="hidden">
+    <div id="homeLoading" class="spinner">読み込み中…</div>
+    <div id="homeCards" style="display:flex;flex-direction:column;gap:12px"></div>
+  </section>
+
+  <!-- 読む -->
+  <section id="viewRead" class="card hidden"></section>
+
+  <!-- 解く -->
+  <section id="viewQuiz" class="card hidden"></section>
+
+  <footer>成竹グループ｜教材の正本はNotion【スタッフ共有】スタッフ学習</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// ★GASのWebアプリURL（/exec）。デプロイ後に差し替える
+const API = '__API_URL__';
+const LS_NAME = 'mq_name', LS_Q = 'mq_sendq';
+
+let me = '';
+try { me = localStorage.getItem(LS_NAME) || ''; } catch (e) {}
+let home = null;         // apiHome の結果
+let cur = null;          // 現在の科目 {key,...}
+let qi = 0, score = 0, log = [];
+
+function api(params) {
+  const qs = Object.keys(params).map(k => k + '=' + encodeURIComponent(params[k] == null ? '' : params[k])).join('&');
+  return fetch(API + '?' + qs).then(r => r.json());
+}
+function el(id) { return document.getElementById(id); }
+function show(id) { el(id).classList.remove('hidden'); }
+function hide(id) { el(id).classList.add('hidden'); }
+function escHtml(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; }
+let tt;
+function toast(m) { const t = el('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 2200); }
+function localToday() { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+
+// ===== 送信キュー（記録は裏で送る。失敗はリトライ、完了時に照合） =====
+let sendQueue = [], sending = false;
+function loadQueue() {
+  try { const o = JSON.parse(localStorage.getItem(LS_Q) || 'null'); if (o && o.name === me && o.date === localToday() && Array.isArray(o.items)) sendQueue = o.items; else localStorage.removeItem(LS_Q); } catch (e) {}
+}
+function saveQueue() { try { localStorage.setItem(LS_Q, JSON.stringify({ name: me, date: localToday(), items: sendQueue })); } catch (e) {} }
+function enqueue(item) { sendQueue.push(item); saveQueue(); pump(); }
+function pump() {
+  if (sending || !sendQueue.length) return;
+  sending = true;
+  const it = sendQueue[0];
+  api(Object.assign({ name: me }, it)).then(() => { sendQueue.shift(); saveQueue(); sending = false; pump(); })
+    .catch(() => { it.tries = (it.tries || 0) + 1; if (it.tries >= 3 && sendQueue.length > 1) { it.tries = 0; sendQueue.push(sendQueue.shift()); } saveQueue(); sending = false; setTimeout(pump, 3000); });
+}
+
+// ===== 初期化 =====
+function init() {
+  if (!me) { showNamePicker(); return; }
+  el('who').textContent = me + ' ▾'; show('who');
+  loadQueue(); pump();
+  loadHome();
+}
+function showNamePicker() {
+  show('viewName'); hide('viewHome'); hide('viewRead'); hide('viewQuiz');
+  api({ action: 'init' }).then(res => {
+    if (res.error) { el('nameList').innerHTML = '<p class="note">' + escHtml(res.error) + '</p>'; return; }
+    const byClinic = {};
+    res.staff.forEach(s => { (byClinic[s.clinic] = byClinic[s.clinic] || []).push(s); });
+    const box = el('nameList'); box.innerHTML = '';
+    Object.keys(byClinic).forEach(c => {
+      const lab = document.createElement('div'); lab.className = 'clinicLabel'; lab.textContent = c; box.appendChild(lab);
+      byClinic[c].forEach(s => {
+        const b = document.createElement('button'); b.textContent = s.name;
+        b.onclick = () => { me = s.name; try { localStorage.setItem(LS_NAME, me); } catch (e) {} hide('viewName'); init(); };
+        box.appendChild(b);
+      });
+    });
+  }).catch(() => { el('nameList').innerHTML = '<p class="note">通信エラー。電波の良い場所でお試しください。</p>'; });
+}
+function changeUser() {
+  try { localStorage.removeItem(LS_NAME); localStorage.removeItem(LS_Q); } catch (e) {}
+  location.reload();
+}
+
+// ===== ホーム =====
+function loadHome() {
+  show('viewHome'); hide('viewRead'); hide('viewQuiz'); show('homeLoading'); el('homeCards').innerHTML = '';
+  api({ action: 'home', name: me }).then(res => {
+    hide('homeLoading');
+    if (res.error) { el('homeCards').innerHTML = '<div class="card"><p>' + escHtml(res.error) + '</p></div>'; return; }
+    home = res;
+    renderHome();
+  }).catch(() => { el('homeLoading').textContent = '通信エラー。再読み込みしてください。'; });
+}
+function renderHome() {
+  const box = el('homeCards'); box.innerHTML = '';
+  const d = home.date, w = ['日', '月', '火', '水', '木', '金', '土'][new Date(d + 'T00:00:00').getDay()];
+  const head = document.createElement('div');
+  head.className = 'meta'; head.innerHTML = '<span>' + escHtml(d.slice(5).replace('-', '/')) + '（' + w + '）</span><span>' + escHtml(me) + 'さん</span>';
+  box.appendChild(head);
+  if (!home.subjects.length) { box.innerHTML += '<div class="card"><p>対象の科目がありません。管理者に連絡してください。</p></div>'; return; }
+  home.subjects.forEach(s => {
+    const c = document.createElement('div'); c.className = 'card subj ' + s.key;
+    let pill = '', sub = '', act = null;
+    if (s.mode === 'read') { pill = s.read.done ? '<span class="pill done">読了</span>' : '<span class="pill ' + s.key + '">読む・3分</span>'; sub = s.read.theme; act = () => openRead(s); }
+    else if (s.mode === 'quiz') { const n = s.quiz.questions.filter(q => q.done).length; pill = s.quiz.completed ? '<span class="pill done">完了</span>' : '<span class="pill ' + s.key + '">解く・' + (n ? n + '/' : '') + s.quiz.questions.length + '問</span>'; sub = '小テスト：' + s.quiz.theme; act = () => openQuiz(s); }
+    else { pill = '<span class="pill none">今日はなし</span>'; sub = '次の配信をお待ちください'; }
+    c.innerHTML = '<div class="l"><span class="n">' + s.icon + ' ' + escHtml(s.name) + '</span><span class="s">' + escHtml(sub) + '</span></div>' + pill;
+    if (act) c.onclick = act; else c.style.cursor = 'default';
+    box.appendChild(c);
+  });
+}
+
+// ===== 読む =====
+function openRead(s) {
+  cur = s; hide('viewHome'); show('viewRead');
+  const v = el('viewRead'); v.className = 'card ' + s.key;
+  v.innerHTML =
+    '<button class="back" onclick="loadHome()">← 戻る</button>' +
+    '<p class="eyebrow ' + s.key + '" style="margin-top:8px">' + s.icon + ' ' + escHtml(s.name) + '　読む</p>' +
+    '<h1>' + escHtml(s.read.theme) + '</h1>' +
+    '<div class="meta"><span>読む時間 約3分</span></div>' +
+    '<div class="body">' + s.read.html + '</div>' +
+    '<button class="btn ' + s.key + '" id="doneBtn"' + (s.read.done ? ' disabled' : '') + '>' + (s.read.done ? '読了を記録しました ✓' : '読み終えました') + '</button>' +
+    '<p class="note">押すと「インプット完了」として記録されます。小テストは翌日10:00に届きます。</p>' +
+    '<p class="fbLink"><button onclick="openFb(\'' + s.key + '\',\'' + escHtml(s.read.pageId) + '\')">この教材について報告する</button></p>';
+  el('doneBtn').onclick = () => {
+    el('doneBtn').disabled = true; el('doneBtn').textContent = '読了を記録しました ✓';
+    s.read.done = true;
+    enqueue({ action: 'readDone', subject: s.key, pageId: s.read.pageId });
+    toast('インプット完了を記録しました');
+  };
+  window.scrollTo({ top: 0 });
+}
+
+// ===== 解く =====
+function openQuiz(s) {
+  cur = s; hide('viewHome'); show('viewQuiz');
+  const v = el('viewQuiz'); v.className = 'card ' + s.key;
+  const qs = s.quiz.questions;
+  score = qs.filter(q => q.done && q.done.correct).length;
+  log = qs.filter(q => q.done).map(q => toLog(q, q.done));
+  qi = qs.findIndex(q => !q.done);
+  if (qi === -1) { renderResult(); return; }
+  renderQ();
+  window.scrollTo({ top: 0 });
+}
+function toLog(q, done) {
+  if (q.type === '記述') return { q: q.q, free: done.text || '（送信済み）', model: q.model };
+  return { q: q.q, ok: !!done.correct, flagged: !!done.flagged, pick: done.choice, ans: q.a, c: q.c };
+}
+function quizHeader(s) {
+  return '<button class="back" onclick="loadHome()">← 戻る</button>' +
+    '<p class="eyebrow ' + s.key + '" style="margin-top:8px">' + s.icon + ' ' + escHtml(s.name) + '　解く</p>' +
+    (s.quiz.source ? '<details style="margin:0 0 12px"><summary style="font-size:13.5px">本文を読み直す：' + escHtml(s.quiz.source.theme) + '</summary><div class="body" style="font-size:14px">' + s.quiz.source.html + '</div></details>' : '');
+}
+function renderQ() {
+  const s = cur, qs = s.quiz.questions, q = qs[qi];
+  const doneN = qs.filter(x => x.done).length;
+  let h = quizHeader(s) + '<div class="prog"><span>問 ' + (doneN + 1) + ' / ' + qs.length + '</span><span>正解 ' + score + '</span></div>';
+  h += '<p class="qtext">' + (q.lead ? '<span class="lead">' + escHtml(q.lead) + '</span>' : '') + escHtml(q.q) + '</p>';
+  if (q.type === '記述') {
+    h += '<textarea id="free" placeholder="ここに書く（自分の言葉で）"></textarea><button class="btn ' + s.key + '" id="send">送信する</button>';
+  } else {
+    h += '<div class="choices">' + q.c.map((c, k) => '<button class="choice" data-k="' + (k + 1) + '"><span class="n">' + (k + 1) + '</span><span>' + escHtml(c) + '</span></button>').join('') +
+      '<button class="choice flag" id="flagBtn">5. この問題がおかしい・分かりにくい（コメントを送る）</button>' +
+      '<div class="flagForm hidden" id="flagForm"><textarea id="flagText" placeholder="どこがおかしい・分かりにくいかを書いてください（承認者に届きます）"></textarea><div class="row"><button onclick="el(\'flagForm\').classList.add(\'hidden\')">やめる</button><button class="send" id="flagSend">送信して次へ</button></div></div></div>';
+  }
+  h += '<div id="fb"></div>';
+  el('viewQuiz').innerHTML = h;
+  if (q.type === '記述') {
+    el('send').onclick = function () {
+      const v = el('free').value.trim();
+      if (!v) { toast('1文でも大丈夫です。書いてから送信してください'); return; }
+      this.disabled = true; this.textContent = '送信しました ✓';
+      q.done = { choice: 0, text: v }; log.push(toLog(q, q.done));
+      enqueue({ action: 'answer', subject: s.key, qid: q.id, choice: 0, text: v });
+      el('fb').innerHTML = '<div class="exp"><div class="verdict ok">送信しました</div><p><b>答え方の例</b><br>' + escHtml(q.model) + '</p><p>' + escHtml(q.exp) + '</p></div><button class="btn ghost ' + s.key + '" id="next">' + nextLabel() + '</button>';
+      el('next').onclick = advance;
+    };
+  } else {
+    Array.prototype.forEach.call(el('viewQuiz').querySelectorAll('.choice[data-k]'), b => {
+      b.onclick = () => {
+        const k = +b.dataset.k, ok = (k === q.a); if (ok) score++;
+        q.done = { choice: k, correct: ok }; log.push(toLog(q, q.done));
+        lockChoices(); Array.prototype.forEach.call(el('viewQuiz').querySelectorAll('.choice[data-k]'), x => { const xk = +x.dataset.k; if (xk === q.a) x.classList.add('ok'); else if (xk === k) x.classList.add('ng'); });
+        enqueue({ action: 'answer', subject: s.key, qid: q.id, choice: k });
+        el('fb').innerHTML = '<div class="exp"><div class="verdict ' + (ok ? 'ok' : 'ng') + '">' + (ok ? '正解' : '不正解　正解は ' + q.a) + '</div>' + escHtml(q.exp) + '</div><button class="btn ghost ' + s.key + '" id="next">' + nextLabel() + '</button>';
+        el('next').onclick = advance; el('next').scrollIntoView({ block: 'nearest' });
+      };
+    });
+    el('flagBtn').onclick = () => { el('flagForm').classList.remove('hidden'); el('flagText').focus(); };
+    el('flagSend').onclick = () => {
+      const c = el('flagText').value.trim();
+      q.done = { choice: 5, correct: false, flagged: true }; log.push(toLog(q, q.done));
+      lockChoices(); el('flagForm').classList.add('hidden');
+      enqueue({ action: 'answer', subject: s.key, qid: q.id, choice: 5, text: c });
+      el('fb').innerHTML = '<div class="exp"><div class="verdict ok">指摘を送信しました</div><p>参考：この問題の正解は ' + q.a + ' です。</p>' + escHtml(q.exp) + '</div><button class="btn ghost ' + s.key + '" id="next">' + nextLabel() + '</button>';
+      el('next').onclick = advance;
+    };
+  }
+  window.scrollTo({ top: 0 });
+}
+function lockChoices() { Array.prototype.forEach.call(el('viewQuiz').querySelectorAll('.choice'), x => x.disabled = true); }
+function nextLabel() { return cur.quiz.questions.filter(x => !x.done).length ? '次の問題' : '結果を見る'; }
+function advance() {
+  qi = cur.quiz.questions.findIndex(q => !q.done);
+  if (qi === -1) { finish(); return; }
+  renderQ();
+}
+function finish() {
+  const s = cur;
+  const items = s.quiz.questions.filter(q => q.done && q.type !== '記述').map(q => q.id + ':' + q.done.choice).join(',');
+  api({ action: 'answerBatch', name: me, subject: s.key, items: items }).catch(() => {});
+  s.quiz.completed = true;
+  renderResult();
+}
+function renderResult() {
+  const s = cur, qs = s.quiz.questions, mc = qs.filter(q => q.type !== '記述').length;
+  let h = quizHeader(s) + '<div class="result"><p class="eyebrow ' + s.key + '">今日の結果</p><div class="big">' + score + ' / ' + mc + '</div><div class="sub">4択の正解数。記述は承認者（' + escHtml(s.key === 'hoken' ? '竹中' : '植田') + '）が読みます。</div>';
+  log.forEach(l => {
+    h += '<div class="rev">';
+    if (l.free != null) h += '<span class="tag w">記述</span><span class="t">' + escHtml(l.q) + '</span><p>あなたの回答：' + escHtml(l.free) + '</p>';
+    else if (l.flagged) h += '<span class="tag w">指摘</span><span class="t">' + escHtml(l.q) + '</span>';
+    else h += '<span class="tag ' + (l.ok ? 'ok' : 'ng') + '">' + (l.ok ? '正解' : '不正解') + '</span><span class="t">' + escHtml(l.q) + '</span><p>正解：' + l.ans + '. ' + escHtml(l.c[l.ans - 1]) + '</p>';
+    h += '</div>';
+  });
+  h += '<p class="note" style="margin-top:14px">おつかれさまでした。次のインプットは次の月・水・金の朝に届きます。</p>' +
+    '<button class="btn ghost ' + s.key + '" onclick="loadHome()">ホームへ戻る</button></div>';
+  el('viewQuiz').innerHTML = h;
+  window.scrollTo({ top: 0 });
+}
+
+// ===== 報告 =====
+function openFb(key, target) {
+  const v = el('viewRead');
+  const f = document.createElement('div');
+  f.className = 'flagForm';
+  f.innerHTML = '<p style="font-weight:700;margin-bottom:4px">この教材について報告</p><textarea id="fbText" placeholder="分かりにくい・現場と違う・こう直してほしい、など"></textarea><div class="row"><button onclick="this.closest(\'.flagForm\').remove()">やめる</button><button class="send" id="fbSend">送信する</button></div>';
+  v.appendChild(f);
+  el('fbSend').onclick = function () {
+    const t = el('fbText').value.trim(); if (!t) { toast('内容を入力してください'); return; }
+    this.disabled = true;
+    api({ action: 'feedback', name: me, subject: key, type: '教材について', target: target, text: t }).then(() => { f.remove(); toast('送信しました。ありがとうございます'); }).catch(() => { this.disabled = false; toast('通信エラー'); });
+  };
+  f.scrollIntoView({ block: 'nearest' });
+}
+
+init();
+</script>
+</body>
+</html>
