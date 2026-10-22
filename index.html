@@ -251,7 +251,7 @@ function openRead(s) {
     '<div class="meta"><span>読む時間 約3分</span></div>' +
     '<div class="body">' + s.read.html + '</div>' +
     '<button class="btn ' + s.key + '" id="doneBtn"' + (s.read.done ? ' disabled' : '') + '>' + (s.read.done ? '読了を記録しました ✓' : '読み終えました') + '</button>' +
-    '<p class="note">押すと「インプット完了」として記録されます。小テストは翌日10:00に届きます。</p>' +
+    '<p class="note">押すと「インプット完了」として記録されます。小テストは翌日7:00に届きます。</p>' +
     '<p class="fbLink"><button onclick="openFb(\'' + s.key + '\',\'' + escHtml(s.read.pageId) + '\')">この教材について報告する</button></p>';
   el('doneBtn').onclick = () => {
     el('doneBtn').disabled = true; el('doneBtn').textContent = '読了を記録しました ✓';
