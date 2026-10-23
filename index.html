@@ -114,7 +114,7 @@ footer{text-align:center;font-size:11px;color:#aaa;padding-top:6px}
 <body>
 <div class="wrap">
   <header>
-    <div class="brand">成竹 スタッフ学習<small>月水金 読む ／ 火木土 解く</small></div>
+    <div class="brand">成竹 スタッフ学習<small>読む → 解く → 次を読む　自分のペースで1日1つ</small></div>
     <button class="who hidden" id="who" onclick="changeUser()"></button>
   </header>
 
@@ -231,9 +231,10 @@ function renderHome() {
   home.subjects.forEach(s => {
     const c = document.createElement('div'); c.className = 'card subj ' + s.key;
     let pill = '', sub = '', act = null;
-    if (s.mode === 'read') { pill = s.read.done ? '<span class="pill done">読了</span>' : '<span class="pill ' + s.key + '">読む・3分</span>'; sub = s.read.theme; act = () => openRead(s); }
-    else if (s.mode === 'quiz') { const n = s.quiz.questions.filter(q => q.done).length; pill = s.quiz.completed ? '<span class="pill done">完了</span>' : '<span class="pill ' + s.key + '">解く・' + (n ? n + '/' : '') + s.quiz.questions.length + '問</span>'; sub = '小テスト：' + s.quiz.theme; act = () => openQuiz(s); }
-    else { pill = '<span class="pill none">今日はなし</span>'; sub = '次の配信をお待ちください'; }
+    const r = s.round ? '第' + s.round + '回　' : '';
+    if (s.mode === 'read') { pill = s.read.done ? '<span class="pill done">今日は読了</span>' : '<span class="pill ' + s.key + '">読む・3分</span>'; sub = r + s.read.theme; act = () => openRead(s); }
+    else if (s.mode === 'quiz') { const n = s.quiz.questions.filter(q => q.done).length; pill = s.quiz.completed ? '<span class="pill done">今日は完了</span>' : '<span class="pill ' + s.key + '">解く・' + (n ? n + '/' : '') + s.quiz.questions.length + '問</span>'; sub = r + '小テスト：' + s.quiz.theme; act = () => openQuiz(s); }
+    else { pill = '<span class="pill none">追いついています</span>'; sub = '次の教材は承認されると出ます'; }
     c.innerHTML = '<div class="l"><span class="n">' + s.icon + ' ' + escHtml(s.name) + '</span><span class="s">' + escHtml(sub) + '</span></div>' + pill;
     if (act) c.onclick = act; else c.style.cursor = 'default';
     box.appendChild(c);
@@ -251,7 +252,7 @@ function openRead(s) {
     '<div class="meta"><span>読む時間 約3分</span></div>' +
     '<div class="body">' + s.read.html + '</div>' +
     '<button class="btn ' + s.key + '" id="doneBtn"' + (s.read.done ? ' disabled' : '') + '>' + (s.read.done ? '読了を記録しました ✓' : '読み終えました') + '</button>' +
-    '<p class="note">押すと「インプット完了」として記録されます。小テストは翌日7:00に届きます。</p>' +
+    '<p class="note">押すと「インプット完了」として記録されます。小テストは明日以降、ここを開くと出ます。</p>' +
     '<p class="fbLink"><button onclick="openFb(\'' + s.key + '\',\'' + escHtml(s.read.pageId) + '\')">この教材について報告する</button></p>';
   el('doneBtn').onclick = () => {
     el('doneBtn').disabled = true; el('doneBtn').textContent = '読了を記録しました ✓';
@@ -354,7 +355,7 @@ function renderResult() {
     else h += '<span class="tag ' + (l.ok ? 'ok' : 'ng') + '">' + (l.ok ? '正解' : '不正解') + '</span><span class="t">' + escHtml(l.q) + '</span><p>正解：' + l.ans + '. ' + escHtml(l.c[l.ans - 1]) + '</p>';
     h += '</div>';
   });
-  h += '<p class="note" style="margin-top:14px">おつかれさまでした。次のインプットは次の月・水・金の朝に届きます。</p>' +
+  h += '<p class="note" style="margin-top:14px">おつかれさまでした。次の教材は明日以降、ここを開くと出ます。</p>' +
     '<button class="btn ghost ' + s.key + '" onclick="loadHome()">ホームへ戻る</button></div>';
   el('viewQuiz').innerHTML = h;
   window.scrollTo({ top: 0 });
